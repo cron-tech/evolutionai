@@ -653,6 +653,7 @@ parágrafo, `GlowButton` único, sem CTA secundário nem prova social.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(hero): add hero section`
+**Status**: ✅ Complete
 
 ---
 
