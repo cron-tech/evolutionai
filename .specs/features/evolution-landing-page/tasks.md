@@ -553,6 +553,7 @@ tamanho (`--text-display`/`--text-h1`).
 **Tests**: unit
 **Gate**: quick
 **Commit**: `feat(common): add two-tone section title component`
+**Status**: ✅ Complete
 
 ---
 
