@@ -883,6 +883,7 @@ distinto ("Fale com vendas").
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(final-cta): add closing cta section`
+**Status**: ✅ Complete
 
 ---
 
