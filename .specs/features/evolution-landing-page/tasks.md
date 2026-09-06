@@ -784,6 +784,7 @@ seta em estado final (sem `stroke-dashoffset` animado).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(delegate): add delegation section`
+**Status**: ✅ Complete
 
 ---
 
