@@ -357,6 +357,7 @@ título, descrição e 3 bullets), conforme a reinterpretação aprovada do arqu
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add persona cards content`
+**Status**: ✅ Complete
 
 ---
 
