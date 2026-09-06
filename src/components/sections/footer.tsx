@@ -42,7 +42,7 @@ export function Footer({ content }: FooterProps) {
 
         <div className="flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-body text-text-muted">Receba novidades do Evolution</p>
-          <NewsletterForm />
+          <NewsletterForm content={content.newsletter} />
         </div>
 
         <div className="flex gap-4">

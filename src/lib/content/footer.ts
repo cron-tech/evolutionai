@@ -7,9 +7,17 @@ import type { NavLink } from "./types"
 // resolve cada um para o ícone/SVG visual escolhido.
 export type SocialIconName = "linkedin" | "instagram" | "youtube"
 
+export interface NewsletterContent {
+  label: string
+  placeholder: string
+  ctaLabel: string
+  confirmation: string
+}
+
 export interface FooterContent {
   description: string
   columns: { title: string; links: NavLink[] }[]
+  newsletter: NewsletterContent
   socials: { label: string; href: string; icon: SocialIconName }[]
   legalLinks: NavLink[]
 }
@@ -44,6 +52,13 @@ export const footerContent: FooterContent = {
       ],
     },
   ],
+  newsletter: {
+    label: "E-mail",
+    placeholder: "seu@email.com",
+    ctaLabel: "Assinar",
+    confirmation:
+      "Inscrição confirmada! Em breve você recebe novidades do Evolution.",
+  },
   socials: [
     { label: "LinkedIn", href: "#", icon: "linkedin" },
     { label: "Instagram", href: "#", icon: "instagram" },
