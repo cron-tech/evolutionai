@@ -12,11 +12,11 @@
 
 ## Handoff
 
-- **Feature**: evolution-landing-page (`.specs/features/evolution-landing-page/`)
-- **Phase / Task**: Design aprovado; próxima fase é Tasks (breakdown completo, feature é Large — múltiplos componentes e dependências)
-- **Completed**: Specify (spec.md validado, 0 erros), Design (design.md escrito, 2 decisões de arquitetura confirmadas com o usuário)
-- **In-progress**: nenhum arquivo de código ainda — nenhuma linha de implementação foi escrita (fase EXECUTE não iniciada)
-- **Next step**: Rodar a fase Tasks (`references/tasks.md`) para quebrar o design em tasks atômicas com dependências, depois `validate_tasks.py` antes de apresentar para aprovação
+- **Feature**: evolution-landing-page (`.specs/features/evolution-landing-page/`) — ✅ COMPLETE
+- **Phase / Task**: Execute finalizado — T1–T33 implementadas e commitadas, Verifier rodou (PASS), 2 gaps menores encontrados e corrigidos em seguida (HDR-05 sem teste; NewsletterForm com copy hardcoded). Gate completo (`lint && typecheck && vitest run && build`) verde: 35/35 testes, `validate_state.py` sem erros.
+- **Completed**: Specify, Design, Tasks, Execute (todas as 7 fases) — feature inteira
+- **In-progress**: nenhum — nada pendente de código
+- **Next step**: QA manual no browser (checklist ao final de `tasks.md`: teclado, breakpoints, `prefers-reduced-motion`, contraste) antes de considerar a página pronta para revisão visual do usuário; depois, revisão de `git log` e decisão do usuário sobre merge/push (fora do escopo autorizado deste Execute)
 - **Blockers**: none
-- **Uncommitted files**: `docs/DESIGN-REFERENCE.md`, `.specs/features/evolution-landing-page/spec.md`, `.specs/features/evolution-landing-page/design.md`, `.specs/STATE.md` — todos novos, nenhum commitado ainda (o usuário commita manualmente por convenção do projeto)
-- **Branch**: main
+- **Uncommitted files**: nenhum arquivo da feature — só `.claude/settings.json`, edição manual do usuário, fora do escopo
+- **Branch**: feat/evolution-landing-page (33 tasks + 1 fix de footer + 2 commits de correção pós-Verifier + 1 relatório de validação = commits locais, nenhum push feito)
