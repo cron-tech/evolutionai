@@ -602,6 +602,7 @@ do breakpoint `md` (SHEET-03).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(common): add light sheet wrapper`
+**Status**: ✅ Complete
 
 ---
 
