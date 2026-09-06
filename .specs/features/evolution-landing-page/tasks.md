@@ -705,6 +705,7 @@ scroll (0..1), com clamp nos extremos.
 **Tests**: unit
 **Gate**: quick
 **Commit**: `feat(narrative): add active step derivation utility`
+**Status**: ✅ Complete
 
 ---
 
