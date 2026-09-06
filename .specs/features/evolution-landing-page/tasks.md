@@ -522,6 +522,7 @@ bloco de newsletter, redes sociais, links legais).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add final cta content`
+**Status**: ✅ Complete
 
 ---
 
