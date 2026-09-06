@@ -259,6 +259,7 @@ substituindo os valores de scaffold "Create Next App").
 **Tests**: none
 **Gate**: build
 **Commit**: `chore(ui): add accordion primitive via shadcn`
+**Status**: ✅ Complete
 
 ---
 
