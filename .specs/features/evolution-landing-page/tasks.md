@@ -577,6 +577,7 @@ existente (`variant="default"`) com o token `--shadow-cta-glow`, estático via C
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(common): add glow button wrapper`
+**Status**: ✅ Complete
 
 ---
 
