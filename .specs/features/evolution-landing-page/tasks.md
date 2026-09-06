@@ -173,6 +173,7 @@ espelhando o `tsconfig.json`) e `src/test/setup.ts` (importa
 **Tests**: none
 **Gate**: quick
 **Commit**: `chore(test): configure vitest with jsdom and testing-library setup`
+**Status**: ✅ Complete
 
 ---
 
