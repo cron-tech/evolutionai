@@ -500,6 +500,7 @@ bloco de newsletter, redes sociais, links legais).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add footer content`
+**Status**: ✅ Complete
 
 ---
 
