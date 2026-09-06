@@ -833,6 +833,7 @@ distinto ("Fale com vendas").
 **Tests**: unit
 **Gate**: quick
 **Commit**: `feat(pricing): add pricing plans section`
+**Status**: ✅ Complete
 
 ---
 
