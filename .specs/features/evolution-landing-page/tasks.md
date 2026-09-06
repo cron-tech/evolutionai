@@ -147,6 +147,7 @@ adicionar os scripts `"test": "vitest run"` e `"typecheck": "tsc --noEmit"` ao
 **Tests**: none
 **Gate**: build
 **Commit**: `chore(test): add vitest and testing library tooling`
+**Status**: ✅ Complete
 
 ---
 
