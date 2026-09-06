@@ -678,6 +678,7 @@ tratado só em CSS (`hover:`/`focus-visible:` do Tailwind).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(personas): add persona cards section`
+**Status**: ✅ Complete
 
 ---
 
