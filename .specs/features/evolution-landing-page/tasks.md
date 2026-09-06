@@ -380,6 +380,7 @@ evolução aprovada (manual → agentes assumindo triagem → operação supervi
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add narrative scrollytelling content`
+**Status**: ✅ Complete
 
 ---
 
