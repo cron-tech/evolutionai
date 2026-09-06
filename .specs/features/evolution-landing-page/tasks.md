@@ -760,6 +760,7 @@ seta em estado final (sem `stroke-dashoffset` animado).
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(delegate): add handwritten annotation with animated arrow`
+**Status**: ✅ Complete
 
 ---
 
