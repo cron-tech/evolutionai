@@ -934,6 +934,7 @@ colunas de link, `NewsletterForm` (T31), redes sociais, linha legal com
 **Tests**: unit
 **Gate**: quick
 **Commit**: `feat(footer): add site footer`
+**Status**: ✅ Complete
 
 ---
 
