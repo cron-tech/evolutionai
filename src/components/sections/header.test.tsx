@@ -22,6 +22,12 @@ describe("Header", () => {
     expect(screen.getByText(headerContent.cta.primary.label)).toBeInTheDocument()
   })
 
+  it("stays sticky at the top of the viewport throughout scroll (HDR-05)", () => {
+    render(<Header nav={headerContent.nav} cta={headerContent.cta} />)
+    const header = screen.getByRole("banner")
+    expect(header).toHaveClass("sticky", "top-0")
+  })
+
   it("is not marked as scrolled before any scroll happens (HDR-02)", () => {
     render(<Header nav={headerContent.nav} cta={headerContent.cta} />)
     const header = screen.getByRole("banner")

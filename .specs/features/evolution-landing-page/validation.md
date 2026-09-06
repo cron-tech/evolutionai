@@ -25,7 +25,7 @@ Scope note: per the Test Coverage Matrix in `tasks.md`, keyboard navigation, run
 | HDR-02: bg+blur after 8px scroll | `data-scrolled` flips false→true crossing 8px | `src/components/sections/header.test.tsx:25-29` (`data-scrolled="false"` initial) and `:31-41` (`scrollY=20` → `data-scrolled="true"`); impl `src/components/sections/header.tsx:22` `setScrolled(window.scrollY > 8)` | ✅ PASS |
 | HDR-03: <768px replaces links with menu button | not precisely automatable (CSS media query) | — | ⚠️ none (documented scope: "breakpoints responsivos" is explicit manual-QA per Test Coverage Matrix header note) |
 | HDR-04: focus moves to first item on open, returns to toggle on close | `document.activeElement` is first nav link after open; toggle button after close | `src/components/sections/header.test.tsx:43-52` and `:54-63`; impl `src/components/sections/header.tsx:28-38` | ✅ PASS |
-| HDR-05: `position: sticky` throughout scroll | not tested | — | ❌ GAP (see Gaps) — implemented (`header.tsx:44` `"sticky top-0 z-50..."`) but zero automated assertion, and not covered by any of the four documented manual-QA-only categories |
+| HDR-05: `position: sticky` throughout scroll | `toHaveClass("sticky", "top-0")` | `src/components/sections/header.test.tsx:25-29`; impl `header.tsx:44` | ✅ PASS (fixed post-verification, see Fix 1) |
 
 ### HERO
 
@@ -97,11 +97,11 @@ Scope note: per the Test Coverage Matrix in `tasks.md`, keyboard navigation, run
 | Criterion | Spec-defined outcome | `file:line` + assertion | Result |
 |---|---|---|---|
 | FOOTER-01: full structure (wordmark, 3 columns, newsletter, socials, legal) | Tests: none per matrix (structural, server component) | — | ⚠️ none (documented scope) — verified by code: `src/components/sections/footer.tsx:14-72` |
-| FOOTER-02: submit non-empty → confirmation; empty → none, no network call | `role="status"` present after non-empty submit; absent after empty submit | `src/components/sections/newsletter-form.test.tsx:7-16` and `:18-25`; impl `src/components/sections/newsletter-form.tsx:17-23` | ✅ PASS |
+| FOOTER-02: submit non-empty → confirmation; empty → none, no network call | `role="status"` present after non-empty submit; absent after empty submit | `src/components/sections/newsletter-form.test.tsx:12-19` and `:21-27`; impl `src/components/sections/newsletter-form.tsx:14-19` | ✅ PASS (copy now sourced from `footerContent.newsletter`, see Fix 2) |
 | FOOTER-03: mobile stack order (wordmark→columns→newsletter→socials→legal) | CSS/DOM-order, breakpoint-adjacent | — | ⚠️ none (documented scope) — verified by code: DOM order in `footer.tsx:14-72` matches spec order exactly |
 | FOOTER-04: copyright year computed at runtime, never hardcoded | Rendered text contains the mocked system year (2031, then 2045) | `src/components/sections/footer.test.tsx:11-18` and `:20-27`; impl `src/components/sections/footer.tsx:9,64` `new Date().getFullYear()` | ✅ PASS |
 
-**Status**: ⚠️ Gaps present (1 real coverage gap: HDR-05; 1 spec-goal deviation: NewsletterForm inline copy — see Gaps below). All ACs with an automated-test expectation per the Test Coverage Matrix are covered and assert the spec-defined outcome; no spec-precision gaps found in the tested ACs themselves (every tested assertion targets the exact spec-defined value, not a vague "is present" check).
+**Status**: ✅ All gaps resolved post-verification (Fix 1 and Fix 2 both applied — see Fix Plans). All P1 ACs with an automated-test expectation per the Test Coverage Matrix are covered and assert the spec-defined outcome; no spec-precision gaps found (every tested assertion targets the exact spec-defined value, not a vague "is present" check).
 
 ---
 
@@ -164,28 +164,24 @@ One self-acknowledged deviation found in code (see Gaps): `src/components/sectio
 
 ## Fix Plans (if issues found)
 
-### Fix 1: HDR-05 (sticky header) has no automated test
+### Fix 1: HDR-05 (sticky header) has no automated test — ✅ FIXED
 
-- **Root cause**: T20's `Done when` list only names HDR-01/02/04; HDR-03/05 were silently scoped out at task-authoring time without an explicit exemption note (unlike HDR-03, which is covered by the matrix's general "breakpoints responsivos" manual-QA carve-out — HDR-05 is a static class, not a breakpoint behavior, so it doesn't fit that carve-out).
-- **Fix task**: Add one assertion to `src/components/sections/header.test.tsx` — e.g. `expect(screen.getByRole("banner")).toHaveClass("sticky", "top-0")` — trivial, no new test infra needed.
-- **Priority**: Minor (implementation is correct; only the automated-evidence trail is missing).
+- **Root cause**: T20's `Done when` list only names HDR-01/02/04; HDR-05 was silently scoped out at task-authoring time.
+- **Applied fix**: Added `it("stays sticky at the top of the viewport throughout scroll (HDR-05)")` to `src/components/sections/header.test.tsx`, asserting `toHaveClass("sticky", "top-0")` on the `banner` role element.
+- **Verified**: `npm run lint && npm run typecheck && npx vitest run && npm run build` — all green, 35/35 tests (was 34).
 
-### Fix 2: NewsletterForm inline copy (SPEC_DEVIATION)
+### Fix 2: NewsletterForm inline copy (SPEC_DEVIATION) — ✅ FIXED
 
-- **Root cause**: `src/lib/content/footer.ts` (T15) shipped before `NewsletterForm` (T31) without a newsletter-copy field; the T31 author chose not to reopen T15's already-committed content contract mid-batch.
-- **Fix task**: Add a `newsletter: { label: string; placeholder: string; ctaLabel: string; confirmation: string }` field to `FooterContent` in `src/lib/content/footer.ts`, populate it in the same file, thread it into `NewsletterForm` as a prop, and update `Footer` (`footer.tsx:45`) to pass it through. Update `newsletter-form.test.tsx` only if prop shape changes what's queried (it currently queries by rendered text/label, which should be unaffected by the source of the string).
-- **Priority**: Minor (a Goals-level content-architecture rule, not a broken user-facing behavior — the newsletter still works correctly per FOOTER-02).
+- **Root cause**: `src/lib/content/footer.ts` (T15) shipped before `NewsletterForm` (T31) without a newsletter-copy field.
+- **Applied fix**: Added `NewsletterContent` interface + `newsletter` field to `FooterContent` in `src/lib/content/footer.ts`; `NewsletterForm` now takes `{ content: NewsletterContent }` and sources label/placeholder/CTA label/confirmation text from it; `Footer` passes `content.newsletter` through; `newsletter-form.test.tsx` updated to render with `footerContent.newsletter` and query by the content's own strings instead of hardcoded literals. `SPEC_DEVIATION` comment removed — no longer a deviation.
+- **Verified**: same gate run as Fix 1, all green.
 
 ---
 
 ## Requirement Traceability Update
 
-All 43 P1 requirement IDs move from `Implementing` → `✅ Verified`, except:
-
-| Requirement | Previous Status | New Status |
-|---|---|---|
-| HDR-05 | Implementing | ⚠️ Verified by code, no automated test (see Fix 1) |
-| All other HDR/HERO/SHEET/PERSONA/NARRATIVE/DELEGATE/SOCIAL/PRICING/FAQ/CTA/FOOTER IDs | Implementing | ✅ Verified |
+All 43 P1 requirement IDs move from `Implementing` → `✅ Verified`, including HDR-05
+(fixed post-verification, see Fix 1).
 
 P2/P3 IDs (HDR-06/07/08, PRICING-05) remain `Pending` — out of scope for this MVP verification pass, consistent with spec.md's own P2/P3 designation.
 
@@ -193,7 +189,7 @@ P2/P3 IDs (HDR-06/07/08, PRICING-05) remain `Pending` — out of scope for this 
 
 ## Summary
 
-**Overall**: ⚠️ Issues (2 minor, non-blocking findings; both gate checks and the discrimination sensor pass cleanly)
+**Overall**: ✅ PASS (2 minor findings identified and fixed post-verification; gate checks and the discrimination sensor pass cleanly)
 
 **Spec-anchored check**: 20/20 automated-test-expected ACs matched their spec-defined outcome (0 spec-precision gaps in tested ACs); all remaining P1 ACs are legitimately un-automated per the project's own documented Test Coverage Matrix scope decision, verified instead by direct code inspection.
 
@@ -203,8 +199,8 @@ P2/P3 IDs (HDR-06/07/08, PRICING-05) remain `Pending` — out of scope for this 
 
 **What works**: All 11 sections compose correctly in `src/app/page.tsx` matching `design.md`'s architecture; every stateful/client component (`Header`, `NarrativeSteps`, `DelegateAnnotation`, `Faq`, `NewsletterForm`, `Footer`'s dynamic year, `Pricing`'s badge/Enterprise branch) has tests that assert the exact spec-defined outcome, not just "something rendered"; the discrimination sensor confirms those tests actually catch regressions in the highest-risk behavior (badge logic, reduced-motion gating, dynamic year, empty-value guard, scroll threshold).
 
-**Issues found**:
-1. HDR-05 (sticky header) — implemented correctly but zero automated-test evidence; trivial one-line fix (add a class assertion).
-2. `NewsletterForm` — self-acknowledged `SPEC_DEVIATION`: copy is inline in JSX rather than sourced from `src/lib/content/`, conflicting with the Goals section's content-architecture rule. Functionally correct; architecturally inconsistent with the rest of the codebase.
+**Issues found and fixed**:
+1. HDR-05 (sticky header) — implemented correctly but had zero automated-test evidence; fixed by adding a class assertion to `header.test.tsx`.
+2. `NewsletterForm` — had a self-acknowledged `SPEC_DEVIATION`: copy was inline in JSX rather than sourced from `src/lib/content/`. Fixed by adding a `newsletter` field to `FooterContent` and threading it through as a prop; the `SPEC_DEVIATION` comment no longer applies.
 
-**Next steps**: Both issues are minor/cosmetic and do not block the feature from being considered functionally complete. Recommend routing Fix 1 and Fix 2 above as follow-up tasks if adherence to the letter of the Test Coverage Matrix and the Goals content-architecture rule is required before final sign-off; neither blocks shipping the page as-is.
+**Next steps**: none — both fixes applied, full gate re-run green (35/35 tests, lint/typecheck/build clean). Feature is complete.
