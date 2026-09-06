@@ -858,6 +858,7 @@ distinto ("Fale com vendas").
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(faq): add accessible faq accordion`
+**Status**: ✅ Complete
 
 ---
 
