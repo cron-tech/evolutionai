@@ -960,6 +960,7 @@ da composição.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(page): compose evolution landing page`
+**Status**: ✅ Complete
 
 ---
 
