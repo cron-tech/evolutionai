@@ -732,6 +732,7 @@ ativo), fade na troca de mídia, empilhamento em coluna única <768px, e leitura
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(narrative): add sticky scrollytelling section`
+**Status**: ✅ Complete
 
 ---
 
