@@ -332,6 +332,7 @@ semanas→minutos, CTA único "Começar agora").
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add hero copy`
+**Status**: ✅ Complete
 
 ---
 
