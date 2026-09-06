@@ -476,6 +476,7 @@ suporte).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add faq content`
+**Status**: ✅ Complete
 
 ---
 
