@@ -308,6 +308,7 @@ os arquivos de conteúdo: `CtaContent`, `NavLink`, `TextTone`, `TitlePart`.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add header navigation content`
+**Status**: ✅ Complete
 
 ---
 
