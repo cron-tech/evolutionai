@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import type { CtaContent, NavLink } from "@/lib/content/types"
@@ -10,20 +10,33 @@ interface HeaderProps {
   cta: { secondary: CtaContent; primary: CtaContent }
 }
 
-export function Header({ nav, cta }: HeaderProps) {
+// SSR renders "not scrolled" (there is no window). useLayoutEffect resolves
+// the real scroll position synchronously before the browser paints, so a
+// reload that restores mid-page scroll never paints a wrong intermediate
+// frame — it just needs a background that reads correctly either way
+// (see AD-002: --bg-page/--background are now the same dark tone, so the
+// two states are visually continuous regardless of which one paints first).
+function useIsScrolled() {
   const [scrolled, setScrolled] = useState(false)
+
+  useLayoutEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 8)
+    }
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  return scrolled
+}
+
+export function Header({ nav, cta }: HeaderProps) {
+  const scrolled = useIsScrolled()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const firstMenuItemRef = useRef<HTMLAnchorElement>(null)
   const isFirstRender = useRef(true)
-
-  useEffect(() => {
-    function handleScroll() {
-      setScrolled(window.scrollY > 8)
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   useEffect(() => {
     if (isFirstRender.current) {

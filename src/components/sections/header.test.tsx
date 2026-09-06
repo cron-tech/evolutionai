@@ -46,6 +46,20 @@ describe("Header", () => {
     expect(header).toHaveAttribute("data-scrolled", "true")
   })
 
+  it("resolves the correct scrolled state on first render when the page reloads already scrolled, with no incorrect intermediate frame", () => {
+    Object.defineProperty(window, "scrollY", { value: 40, configurable: true })
+
+    render(<Header nav={headerContent.nav} cta={headerContent.cta} />)
+    const header = screen.getByRole("banner")
+
+    // The initial read runs in useLayoutEffect (synchronous, before paint),
+    // so by the time the test can observe the DOM the correct state must
+    // already be there — never the SSR default of "not scrolled".
+    expect(header).toHaveAttribute("data-scrolled", "true")
+
+    Object.defineProperty(window, "scrollY", { value: 0, configurable: true })
+  })
+
   it("moves focus to the first mobile menu item when opened (HDR-04)", async () => {
     const user = userEvent.setup()
     render(<Header nav={headerContent.nav} cta={headerContent.cta} />)
