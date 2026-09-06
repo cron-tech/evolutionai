@@ -284,6 +284,7 @@ os arquivos de conteúdo: `CtaContent`, `NavLink`, `TextTone`, `TitlePart`.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add shared content types`
+**Status**: ✅ Complete
 
 ---
 
