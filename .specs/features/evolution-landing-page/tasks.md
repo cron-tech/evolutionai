@@ -807,6 +807,7 @@ fictícios + depoimentos, com o disclaimer de conteúdo ilustrativo visível.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(social-proof): add social proof section`
+**Status**: ✅ Complete
 
 ---
 
