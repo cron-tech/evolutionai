@@ -204,6 +204,7 @@ prontos do `docs/DESIGN-REFERENCE.md` §9
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(theme): remap design tokens to evolution palette`
+**Status**: ✅ Complete
 
 ---
 

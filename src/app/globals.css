@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-outfit);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -39,13 +39,56 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
+  /* Raios — remapeados do preset radix-nova para a escala do Evolution
+     (Risco 1 do design.md: nenhum sistema de radius duplicado) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-sheet: 48px;
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Evolution — Base (DESIGN-REFERENCE.md §9) */
+  --color-bg-page: #000000;
+  --color-surface-sheet: #ffffff;
+  --color-surface: #161616;
+  --color-surface-raised: #1f1f1f;
+  --color-surface-sunken: #0a0a0a;
+
+  /* Evolution — Texto */
+  --color-text-muted: #afafaf;
+  --color-text-subtle: #757575;
+  --color-text-dimmed: #5a5a5a;
+  --color-text-on-light: #0a0a0a;
+  --color-text-on-light-muted: #5a5a5a;
+
+  /* Evolution — Accent */
+  --color-accent-50: #b2ffda;
+  --color-accent-200: #00fdb3;
+  --color-accent-500: #00e19f;
+  --color-accent-700: #00c288;
+  --color-accent-900: #00a976;
+  --color-accent-on-light: #00875d;
+  --color-accent-cta: #00e1ac;
+
+  /* Evolution — Tipografia */
+  --text-display: clamp(2.75rem, 2rem + 3.5vw, 7.5rem);
+  --text-h1: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  --text-h2: clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
+  --text-body-lg: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-body: 1rem;
+  --text-caption: 0.875rem;
+
+  /* Evolution — Espaçamento */
+  --spacing-header-x-left: 1.9375rem;
+  --spacing-header-x-right: 1.75rem;
+  --spacing-section: clamp(4rem, 3rem + 5vw, 8rem);
+
+  /* Evolution — Containers */
+  --container-max: 1280px;
+  --container-sheet-gutter: clamp(1rem, 2vw, 2rem);
 }
 
 :root {
@@ -55,14 +98,16 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  /* --primary/--accent remapeados para os tokens do Evolution (Risco 1 do
+     design.md) em vez de manter a paleta neutra do preset radix-nova coexistindo */
+  --primary: #00e1ac;
+  --primary-foreground: #0a0a0a;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: #00e19f;
+  --accent-foreground: #0a0a0a;
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
@@ -72,7 +117,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -90,14 +135,14 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --primary: #00e1ac;
+  --primary-foreground: #0a0a0a;
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent: #00e19f;
+  --accent-foreground: #0a0a0a;
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
