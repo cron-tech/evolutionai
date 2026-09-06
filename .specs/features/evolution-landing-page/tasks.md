@@ -234,6 +234,7 @@ substituindo os valores de scaffold "Create Next App").
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(layout): switch to outfit font and evolution metadata`
+**Status**: ✅ Complete
 
 ---
 
