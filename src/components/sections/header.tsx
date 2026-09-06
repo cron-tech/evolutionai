@@ -65,7 +65,7 @@ export function Header({ nav, cta }: HeaderProps) {
               key={link.href}
               ref={index === 0 ? firstMenuItemRef : undefined}
               href={link.href}
-              className="text-sm text-text-dimmed hover:text-foreground"
+              className="text-sm text-text-subtle hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.label}

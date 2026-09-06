@@ -10,6 +10,14 @@
 - **Date**: 2026-09-05
 - **Status**: active
 
+### AD-002
+- **Decision**: Os tokens de texto/fundo (`--foreground`, `--background`, `--text-muted`, `--text-subtle`, `--text-dimmed`, `--border`) passam a ser relativos à superfície, via variáveis intermediárias `--tone-*` redefinidas em `:root` (escuro, padrão da página), `.surface-light` (dentro da folha branca) e `.surface-dark` (cards escuros aninhados dentro da folha, ex. Personas), em vez de valores fixos.
+- **Reason**: QA manual no browser encontrou `--foreground`/`--background` herdando o tema claro do scaffold shadcn (`#0a0a0a`/branco) em vez da paleta do Evolution — a T3 nunca aplicou essas duas linhas do bloco `@theme` de `DESIGN-REFERENCE.md` §9 porque o preset `radix-nova` já as mapeava, e a colisão (Risco 1 do design.md) foi resolvida na direção errada. Efeito: 15 de 36 combinações texto/fundo reais falhavam AA, incluindo a metade "contraste pleno" do título bicolor em toda seção escura. Corrigir token a token teria mantido dois sistemas de cor convivendo (`foreground` vs. `on-light`); tornar os tokens relativos à superfície resolve a família inteira sem qualquer mudança de classe nos componentes que já usam `text-foreground`/`bg-background`/`border-border`.
+- **Trade-off**: Um nível extra de indireção (tone → color token) para quem for ler `globals.css`; qualquer novo "tipo de superfície" (ex. um card claro dentro de um card escuro) precisa de uma nova classe `.surface-*`, não só um novo valor de token.
+- **Scope**: `src/app/globals.css` e qualquer componente futuro que precise anunciar em qual superfície está (aplicar `.surface-light`/`.surface-dark` no wrapper, nunca por token individual).
+- **Date**: 2026-09-06
+- **Status**: active
+
 ## Handoff
 
 - **Feature**: evolution-landing-page (`.specs/features/evolution-landing-page/`) — ✅ COMPLETE

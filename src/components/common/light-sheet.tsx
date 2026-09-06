@@ -9,7 +9,7 @@ export function LightSheet({ children }: LightSheetProps) {
   return (
     <div
       className={cn(
-        "mx-[var(--container-sheet-gutter)] rounded-xl bg-surface-sheet md:rounded-sheet"
+        "surface-light mx-[var(--container-sheet-gutter)] rounded-xl bg-surface-sheet md:rounded-sheet"
       )}
     >
       {children}

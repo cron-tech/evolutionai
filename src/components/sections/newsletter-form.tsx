@@ -39,7 +39,7 @@ export function NewsletterForm({ content }: NewsletterFormProps) {
         value={email}
         onChange={(event) => setEmail(event.target.value)}
         placeholder={content.placeholder}
-        className="h-10 flex-1 rounded-lg border border-border bg-transparent px-3 text-body text-foreground placeholder:text-text-dimmed"
+        className="h-10 flex-1 rounded-lg border border-border bg-transparent px-3 text-body text-foreground placeholder:text-text-subtle"
       />
       <Button type="submit">{content.ctaLabel}</Button>
     </form>

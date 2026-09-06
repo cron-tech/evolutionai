@@ -28,10 +28,10 @@ export function Personas({ content }: PersonasProps) {
           <div
             key={card.id}
             className={cn(
-              "flex flex-col gap-6 rounded-2xl bg-surface p-8 text-left",
-              "shadow-[0_8px_24px_-8px_rgb(0_0_0_/_0.4)] transition-shadow duration-200",
-              "hover:shadow-[0_16px_40px_-12px_rgb(0_0_0_/_0.5)]",
-              "focus-within:shadow-[0_16px_40px_-12px_rgb(0_0_0_/_0.5)]"
+              "surface-dark flex flex-col gap-6 rounded-2xl bg-surface p-8 text-left",
+              "shadow-[var(--shadow-card)] transition-shadow duration-200",
+              "hover:shadow-[var(--shadow-card-overlap)]",
+              "focus-within:shadow-[var(--shadow-card-overlap)]"
             )}
           >
             <h3 className="text-h2 font-medium text-foreground">{card.title}</h3>

@@ -36,7 +36,7 @@ export function Pricing({ plans }: PricingProps) {
             className={cn(
               "relative flex flex-col gap-6 rounded-2xl bg-background p-6 text-left shadow-[0_8px_24px_-8px_rgb(0_0_0_/_0.15)] transition-shadow duration-200",
               "hover:shadow-[0_16px_40px_-12px_rgb(0_0_0_/_0.25)] focus-within:shadow-[0_16px_40px_-12px_rgb(0_0_0_/_0.25)]",
-              plan.recommended ? "border-2 border-accent-500" : "border border-border"
+              plan.recommended ? "border-2 border-accent-on-light" : "border border-border"
             )}
           >
             {plan.recommended ? (

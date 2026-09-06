@@ -21,7 +21,7 @@ export function Footer({ content }: FooterProps) {
         <div className="grid gap-8 sm:grid-cols-3">
           {content.columns.map((column) => (
             <div key={column.title} className="flex flex-col gap-3">
-              <h3 className="text-caption font-medium tracking-wide text-text-dimmed uppercase">
+              <h3 className="text-caption font-medium tracking-wide text-text-subtle uppercase">
                 {column.title}
               </h3>
               <ul className="flex flex-col gap-2">
@@ -60,7 +60,7 @@ export function Footer({ content }: FooterProps) {
           ))}
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-white/10 pt-6 text-caption text-text-dimmed sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-t border-white/10 pt-6 text-caption text-text-subtle sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} Evolution. Todos os direitos reservados.</p>
           <div className="flex gap-4">
             {content.legalLinks.map((link) => (

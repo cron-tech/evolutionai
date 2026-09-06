@@ -35,7 +35,9 @@ describe("Pricing", () => {
     const growthCard = screen.getByText("Growth").closest("[data-plan-id]") as HTMLElement
     expect(growthCard).not.toBeNull()
     expect(within(growthCard).getByText("Recomendado")).toBeInTheDocument()
-    expect(growthCard.className).toMatch(/border-accent-500/)
+    // border-accent-on-light (not border-accent-500): accent-500 fails the
+    // 3:1 UI-component contrast floor against the white sheet (1.71:1).
+    expect(growthCard.className).toMatch(/border-accent-on-light/)
   })
 
   it("renders no 'Recomendado' badge and no highlight border on a plan without recommended (PRICING-04)", () => {
@@ -44,7 +46,7 @@ describe("Pricing", () => {
     const starterCard = screen.getByText("Starter").closest("[data-plan-id]") as HTMLElement
     expect(starterCard).not.toBeNull()
     expect(within(starterCard).queryByText("Recomendado")).not.toBeInTheDocument()
-    expect(starterCard.className).not.toMatch(/border-accent-500/)
+    expect(starterCard.className).not.toMatch(/border-accent-on-light/)
   })
 
   it("renders 'Sob consulta' in place of a price for the Enterprise plan (PRICING-02)", () => {

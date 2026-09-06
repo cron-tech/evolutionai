@@ -12,13 +12,13 @@ function KanbanCard({ card, className }: { card: KanbanCardContent; className?: 
   return (
     <div
       className={cn(
-        "w-full max-w-xs rounded-xl bg-surface-raised p-4 text-left shadow-[0_8px_24px_-8px_rgb(0_0_0_/_0.4)]",
+        "w-full max-w-xs rounded-xl bg-surface-raised p-4 text-left shadow-[var(--shadow-card)]",
         className
       )}
     >
       <span className="text-caption text-text-muted">{card.label}</span>
       <p className="mt-1 text-body font-medium text-foreground">{card.taskTitle}</p>
-      <div className="mt-3 flex items-center justify-between gap-2 text-caption text-text-dimmed">
+      <div className="mt-3 flex items-center justify-between gap-2 text-caption text-text-muted">
         <span>{card.assignees.map((assignee) => assignee.name).join(", ")}</span>
         <span>{card.dateRange}</span>
       </div>
