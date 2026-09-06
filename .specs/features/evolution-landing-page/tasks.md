@@ -909,6 +909,7 @@ confirmação (sem chamada de rede).
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(footer): add decorative newsletter form`
+**Status**: ✅ Complete
 
 ---
 
