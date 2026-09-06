@@ -404,6 +404,7 @@ tarefa operacional, e o texto da anotação manuscrita).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add delegation section content`
+**Status**: ✅ Complete
 
 ---
 
