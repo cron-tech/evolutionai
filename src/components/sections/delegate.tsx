@@ -1,5 +1,5 @@
-import Image from "next/image"
 import { SectionTitle } from "@/components/common/section-title"
+import { UiMock } from "@/components/common/ui-mock"
 import { cn } from "@/lib/utils"
 import type { DelegateContent, KanbanCardContent } from "@/lib/content/delegate"
 import { DelegateAnnotation } from "./delegate-annotation"
@@ -36,15 +36,10 @@ export function Delegate({ content }: DelegateProps) {
         </div>
 
         <div className="relative pb-24">
-          <div className="relative mx-auto aspect-3/4 w-full max-w-sm overflow-hidden rounded-2xl">
-            <Image
-              src={content.media.src}
-              alt={content.media.alt}
-              fill
-              sizes="(min-width: 768px) 40vw, 90vw"
-              className="object-cover"
-            />
-          </div>
+          <UiMock
+            content={content.mock}
+            className="mx-auto aspect-3/4 w-full max-w-sm"
+          />
 
           <div className="relative z-10 mx-auto -mt-16 flex w-full max-w-sm flex-col gap-4">
             <KanbanCard card={content.kanban.backlog} className="mr-8" />

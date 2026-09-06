@@ -1,9 +1,9 @@
 "use client"
 
-import Image from "next/image"
 import { useRef, useState, useSyncExternalStore } from "react"
 import { useMotionValueEvent, useScroll } from "motion/react"
 import { SectionTitle } from "@/components/common/section-title"
+import { UiMock } from "@/components/common/ui-mock"
 import { cn } from "@/lib/utils"
 import type { NarrativeStepContent } from "@/lib/content/narrative"
 import { getActiveStepIndex } from "./narrative-steps.utils"
@@ -82,14 +82,11 @@ export function NarrativeSteps({ steps }: NarrativeStepsProps) {
 
         <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl">
           {steps.map((step, index) => (
-            <Image
+            <UiMock
               key={step.id}
-              src={step.media.src}
-              alt={step.media.alt}
-              fill
-              sizes="(min-width: 768px) 40vw, 90vw"
+              content={step.mock}
               className={cn(
-                "object-cover transition-opacity duration-500",
+                "absolute inset-0 transition-opacity duration-500",
                 index === activeIndex ? "opacity-100" : "opacity-0"
               )}
             />
@@ -103,15 +100,7 @@ export function NarrativeSteps({ steps }: NarrativeStepsProps) {
           <div key={step.id} className="flex flex-col gap-4">
             <SectionTitle as="h2" parts={step.titleParts} />
             <p className="text-body text-text-muted">{step.supportingText}</p>
-            <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl">
-              <Image
-                src={step.media.src}
-                alt={step.media.alt}
-                fill
-                sizes="90vw"
-                className="object-cover"
-              />
-            </div>
+            <UiMock content={step.mock} className="aspect-4/3 w-full" />
           </div>
         ))}
       </div>

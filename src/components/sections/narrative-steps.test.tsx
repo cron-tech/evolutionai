@@ -1,5 +1,5 @@
 import { act } from "react"
-import { render } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { narrativeSteps } from "@/lib/content/narrative"
 import { NarrativeSteps } from "./narrative-steps"
@@ -78,5 +78,14 @@ describe("NarrativeSteps", () => {
     const activeElsAfter = getActiveStepEls()
     expect(activeElsAfter).toHaveLength(1)
     expect(activeElsAfter[0].textContent).toContain(lastStep.titleParts[0].text)
+  })
+
+  it("renders a coded UI mock for every step instead of a missing image (no 404 media)", () => {
+    render(<NarrativeSteps steps={narrativeSteps} />)
+
+    for (const step of narrativeSteps) {
+      // Desktop + mobile layouts both render one mock per step.
+      expect(screen.getAllByRole("img", { name: step.mock.label }).length).toBeGreaterThan(0)
+    }
   })
 })

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 40" role="img" aria-label="Portal Engenharia">
+  <rect x="4" y="7" width="18" height="18" rx="3" fill="none" stroke="#00875D" stroke-width="3" />
+  <rect x="10" y="13" width="6" height="6" rx="1.5" fill="#00875D" />
+  <text x="32" y="27" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="0.2" fill="#0A0A0A">Portal</text>
+</svg>
