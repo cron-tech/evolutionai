@@ -453,6 +453,7 @@ Growth, Scale com preço/faixa + `recommended` num deles, Enterprise com
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add pricing plans content`
+**Status**: ✅ Complete
 
 ---
 
