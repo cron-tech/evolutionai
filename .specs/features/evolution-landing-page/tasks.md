@@ -630,6 +630,7 @@ menu mobile com `useState` + gestão de foco (mover ao abrir, devolver ao fechar
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(header): add sticky header with mobile menu`
+**Status**: ✅ Complete
 
 ---
 
