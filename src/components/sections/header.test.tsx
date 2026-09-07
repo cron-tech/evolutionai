@@ -6,14 +6,14 @@ import { Header } from "./header"
 import { headerContent } from "@/lib/content/header"
 
 describe("Header", () => {
-  it("renders wordmark, 4 nav links, and both CTAs (HDR-01)", () => {
+  it("renders wordmark, 3 nav links, and both CTAs (HDR-01)", () => {
     render(<Header nav={headerContent.nav} cta={headerContent.cta} />)
 
     expect(screen.getByRole("link", { name: "Evolution" })).toBeInTheDocument()
 
     const nav = screen.getByRole("navigation")
     const links = within(nav).getAllByRole("link")
-    expect(links).toHaveLength(4)
+    expect(links).toHaveLength(3)
     expect(links.map((link) => link.textContent)).toEqual(
       headerContent.nav.map((item) => item.label)
     )

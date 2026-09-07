@@ -9,7 +9,10 @@ interface HeroProps {
 
 export function Hero({ content }: HeroProps) {
   return (
-    <section className="bg-bg-page px-6 pt-24 pb-32 text-center">
+    <section
+      id="sobre"
+      className="scroll-mt-[var(--header-height)] bg-bg-page px-6 pt-24 pb-32 text-center"
+    >
       <Reveal className="mx-auto flex max-w-[var(--container-max)] flex-col items-center gap-6">
         <SectionTitle as="h1" parts={content.titleParts} />
         <p className="max-w-2xl text-body-lg text-text-muted">{content.paragraph}</p>

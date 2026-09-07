@@ -7,7 +7,6 @@ export const headerContent: {
   nav: [
     { label: "Produto", href: "#produto" },
     { label: "Soluções", href: "#solucoes" },
-    { label: "Recursos", href: "#recursos" },
     { label: "Preços", href: "#precos" },
   ],
   cta: {

@@ -53,8 +53,9 @@ export function NarrativeSteps({ steps }: NarrativeStepsProps) {
 
   return (
     <section
+      id="produto"
       ref={sectionRef}
-      className="relative px-6"
+      className="relative scroll-mt-[var(--header-height)] px-6"
       style={{ height: `${steps.length * 100}vh` }}
     >
       {/* Desktop: sticky two-column scrollytelling (NARRATIVE-01..04) */}

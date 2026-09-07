@@ -116,6 +116,9 @@
   /* Evolution — Containers */
   --container-max: 1280px;
   --container-sheet-gutter: clamp(1rem, 2vw, 2rem);
+
+  /* Evolution — Layout (offset do header sticky para navegação por âncora) */
+  --header-height: 5.5rem;
 }
 
 :root {
@@ -231,6 +234,10 @@
   }
   html {
     @apply font-sans;
+    /* Navegação por âncora (Header/Footer → seções). A guarda de
+       prefers-reduced-motion abaixo já força scroll-behavior: auto, então o
+       fallback sem transição é automático. */
+    scroll-behavior: smooth;
   }
 }
 

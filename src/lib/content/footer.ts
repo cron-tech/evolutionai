@@ -45,11 +45,7 @@ export const footerContent: FooterContent = {
     },
     {
       title: "Recursos",
-      links: [
-        { label: "Perguntas frequentes", href: "#faq" },
-        { label: "Central de ajuda", href: "#recursos" },
-        { label: "Status do produto", href: "#status" },
-      ],
+      links: [{ label: "Perguntas frequentes", href: "#faq" }],
     },
   ],
   newsletter: {

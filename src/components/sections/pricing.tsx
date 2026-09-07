@@ -19,7 +19,10 @@ function isEnterprise(plan: PricingPlan) {
 
 export function Pricing({ plans }: PricingProps) {
   return (
-    <section className="px-6 py-[var(--spacing-section)] text-center">
+    <section
+      id="precos"
+      className="scroll-mt-[var(--header-height)] px-6 py-[var(--spacing-section)] text-center"
+    >
       <SectionTitle
         as="h2"
         parts={[

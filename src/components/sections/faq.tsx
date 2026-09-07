@@ -16,7 +16,7 @@ interface FaqProps {
 
 export function Faq({ items }: FaqProps) {
   return (
-    <section className="px-6 py-[var(--spacing-section)]">
+    <section id="faq" className="scroll-mt-[var(--header-height)] px-6 py-[var(--spacing-section)]">
       <Reveal className="mx-auto max-w-3xl">
         <SectionTitle
           as="h2"

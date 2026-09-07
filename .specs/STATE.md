@@ -18,6 +18,22 @@
 - **Date**: 2026-09-06
 - **Status**: active
 
+### AD-003
+- **Decision**: `--color-background` e `--color-border` (dentro de `@theme inline`) apontam diretamente para `--tone-surface`/`--tone-border`, em vez de para `--background`/`--border`.
+- **Reason**: QA rodada 2 achou uma regressão da AD-002 — SocialProof e Pricing (os dois únicos consumidores de `bg-background`/`border-border` na base) renderizavam com fundo/borda congelados no valor de `:root` (preto/translúcido) mesmo dentro de `.surface-light`. Causa: `--background`/`--border` são declaradas numa regra `:root {}` comum, fora de `@theme inline` — uma `var()` só resolve usando o valor visível onde ELA é declarada, e nenhuma regra `.surface-*` redeclara `--background`/`--border` (só `--tone-surface`/`--tone-border`), então o valor fica congelado no de `:root` para a árvore inteira. Os tokens de texto (`foreground`, `text-muted`, etc.) escaparam desse bug por já apontarem direto para `--tone-*`. Um teste de snapshot de classe não pegaria isso — a classe estava certa, só o valor por trás dela quebrou; `src/test/surface-tokens.test.ts` foi adicionado para compilar o CSS de verdade (`@tailwindcss/postcss`) e inspecionar a declaração gerada.
+- **Trade-off**: `--background`/`--border`/`--foreground` (as variáveis "soltas", fora do tema) ficam órfãs — declaradas em `:root`/`.dark` só por herança do scaffold shadcn, sem nenhum consumidor real. Aceitável: removê-las teria mais blast radius do que deixá-las inertes.
+- **Scope**: `src/app/globals.css` — mesmo escopo da AD-002; qualquer token futuro que precise ser relativo à superfície deve apontar direto para `--tone-*`, nunca para uma variável intermediária declarada só em `:root`.
+- **Date**: 2026-09-06
+- **Status**: active
+
+### AD-004
+- **Decision**: Removido o item de navegação "Recursos" do Header e os links "Central de ajuda"/"Status do produto" da coluna "Recursos" do Footer (mesmo destino órfão, `#recursos`/`#status`); "Sobre o Evolution" passa a apontar para a Hero (`id="sobre"`); demais itens de nav ganham `id` real nas seções (Produto→NarrativeSteps, Soluções→Personas, Preços→Pricing, FAQ→Faq).
+- **Reason**: QA rodada 2 achou que nenhuma seção da página tinha `id` — todo link de navegação do Header/Footer sempre foi morto. `spec.md` (HDR-01) e a tabela de Out of Scope já registravam "Recursos" como item sem rota, uma suposição consciente da fase Specify; ao decidir de fato o que fazer com cada link órfão (perguntado ao usuário antes de agir), a decisão foi remover em vez de manter a suposição original — isso substitui HDR-01 (agora 3 links, não 4) e a linha correspondente de Out of Scope, já atualizadas em `spec.md`. "Privacidade"/"Termos" ficam como placeholder inerte (decisão do usuário) — comum em landing pages de portfólio para links legais fora do escopo do case.
+- **Trade-off**: Nenhum — é remoção de conteúdo nunca funcional, não perda de funcionalidade real.
+- **Scope**: `src/lib/content/header.ts`, `src/lib/content/footer.ts`, `spec.md` (HDR-01, Out of Scope); os 5 `id`+`scroll-mt` ficam em `hero.tsx`, `narrative-steps.tsx`, `personas.tsx`, `pricing.tsx`, `faq.tsx`.
+- **Date**: 2026-09-06
+- **Status**: active
+
 ## Handoff
 
 - **Feature**: evolution-landing-page (`.specs/features/evolution-landing-page/`) — ✅ COMPLETE

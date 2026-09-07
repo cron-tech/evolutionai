@@ -15,7 +15,10 @@ const ctaVariant: Record<PersonaCardContent["cta"]["variant"], "default" | "outl
 
 export function Personas({ content }: PersonasProps) {
   return (
-    <section className="px-6 py-[var(--spacing-section)] text-center">
+    <section
+      id="solucoes"
+      className="scroll-mt-[var(--header-height)] px-6 py-[var(--spacing-section)] text-center"
+    >
       <SectionTitle
         as="h2"
         parts={[
