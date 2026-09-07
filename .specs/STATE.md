@@ -21,10 +21,10 @@
 ## Handoff
 
 - **Feature**: evolution-landing-page (`.specs/features/evolution-landing-page/`) — ✅ COMPLETE
-- **Phase / Task**: Execute finalizado — T1–T33 implementadas e commitadas, Verifier rodou (PASS), 2 gaps menores encontrados e corrigidos em seguida (HDR-05 sem teste; NewsletterForm com copy hardcoded). Gate completo (`lint && typecheck && vitest run && build`) verde: 35/35 testes, `validate_state.py` sem erros.
-- **Completed**: Specify, Design, Tasks, Execute (todas as 7 fases) — feature inteira
+- **Phase / Task**: Execute finalizado (T1–T33) + rodada de correção pós-QA manual no browser, em 4 blocos: (1) tokens `--foreground`/`--background` remapeados para tons relativos à superfície (AD-002) — causa raiz de 15/36 combinações de contraste falhando AA; (2) header sem flash de fundo claro antes do primeiro scroll; (3) mídia 404 (Narrative/Delegate) substituída por mocks de UI em código, logos do SocialProof substituídos por SVGs gerados; (4) camada de motion (scroll reveal, hover de botão/card, entrada do parágrafo do Narrative), toda em transform/opacity, com fallback explícito para `prefers-reduced-motion`. Gate completo (`lint && typecheck && vitest run && build`) verde: 41/41 testes, `validate_state.py` sem erros.
+- **Completed**: Specify, Design, Tasks, Execute (todas as 7 fases) + correção pós-QA — feature inteira
 - **In-progress**: nenhum — nada pendente de código
-- **Next step**: QA manual no browser (checklist ao final de `tasks.md`: teclado, breakpoints, `prefers-reduced-motion`, contraste) antes de considerar a página pronta para revisão visual do usuário; depois, revisão de `git log` e decisão do usuário sobre merge/push (fora do escopo autorizado deste Execute)
+- **Next step**: QA manual no browser da rodada de correção (o QA anterior já foi feito pelo usuário e gerou os 4 blocos acima; falta confirmar visualmente que os 4 problemas foram resolvidos) antes de considerar a página pronta; depois, revisão de `git log` e decisão do usuário sobre merge/push (fora do escopo autorizado)
 - **Blockers**: none
 - **Uncommitted files**: nenhum arquivo da feature — só `.claude/settings.json`, edição manual do usuário, fora do escopo
-- **Branch**: feat/evolution-landing-page (33 tasks + 1 fix de footer + 2 commits de correção pós-Verifier + 1 relatório de validação = commits locais, nenhum push feito)
+- **Branch**: feat/evolution-landing-page (33 tasks + 1 fix de footer + 2 commits de correção pós-Verifier + 1 relatório de validação + 4 commits da correção pós-QA = commits locais, nenhum push feito)
