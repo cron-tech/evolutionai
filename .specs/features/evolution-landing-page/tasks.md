@@ -147,6 +147,7 @@ adicionar os scripts `"test": "vitest run"` e `"typecheck": "tsc --noEmit"` ao
 **Tests**: none
 **Gate**: build
 **Commit**: `chore(test): add vitest and testing library tooling`
+**Status**: ✅ Complete
 
 ---
 
@@ -172,6 +173,7 @@ espelhando o `tsconfig.json`) e `src/test/setup.ts` (importa
 **Tests**: none
 **Gate**: quick
 **Commit**: `chore(test): configure vitest with jsdom and testing-library setup`
+**Status**: ✅ Complete
 
 ---
 
@@ -202,6 +204,7 @@ prontos do `docs/DESIGN-REFERENCE.md` §9
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(theme): remap design tokens to evolution palette`
+**Status**: ✅ Complete
 
 ---
 
@@ -231,6 +234,7 @@ substituindo os valores de scaffold "Create Next App").
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(layout): switch to outfit font and evolution metadata`
+**Status**: ✅ Complete
 
 ---
 
@@ -255,6 +259,7 @@ substituindo os valores de scaffold "Create Next App").
 **Tests**: none
 **Gate**: build
 **Commit**: `chore(ui): add accordion primitive via shadcn`
+**Status**: ✅ Complete
 
 ---
 
@@ -279,6 +284,7 @@ os arquivos de conteúdo: `CtaContent`, `NavLink`, `TextTone`, `TitlePart`.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add shared content types`
+**Status**: ✅ Complete
 
 ---
 
@@ -302,6 +308,7 @@ os arquivos de conteúdo: `CtaContent`, `NavLink`, `TextTone`, `TitlePart`.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add header navigation content`
+**Status**: ✅ Complete
 
 ---
 
@@ -325,6 +332,7 @@ semanas→minutos, CTA único "Começar agora").
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add hero copy`
+**Status**: ✅ Complete
 
 ---
 
@@ -349,6 +357,7 @@ título, descrição e 3 bullets), conforme a reinterpretação aprovada do arqu
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add persona cards content`
+**Status**: ✅ Complete
 
 ---
 
@@ -371,6 +380,7 @@ evolução aprovada (manual → agentes assumindo triagem → operação supervi
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add narrative scrollytelling content`
+**Status**: ✅ Complete
 
 ---
 
@@ -394,6 +404,7 @@ tarefa operacional, e o texto da anotação manuscrita).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add delegation section content`
+**Status**: ✅ Complete
 
 ---
 
@@ -418,6 +429,7 @@ tarefa operacional, e o texto da anotação manuscrita).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add social proof content`
+**Status**: ✅ Complete
 
 ---
 
@@ -441,6 +453,7 @@ Growth, Scale com preço/faixa + `recommended` num deles, Enterprise com
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add pricing plans content`
+**Status**: ✅ Complete
 
 ---
 
@@ -463,6 +476,7 @@ suporte).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add faq content`
+**Status**: ✅ Complete
 
 ---
 
@@ -486,6 +500,7 @@ bloco de newsletter, redes sociais, links legais).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add footer content`
+**Status**: ✅ Complete
 
 ---
 
@@ -507,6 +522,7 @@ bloco de newsletter, redes sociais, links legais).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(content): add final cta content`
+**Status**: ✅ Complete
 
 ---
 
@@ -537,6 +553,7 @@ tamanho (`--text-display`/`--text-h1`).
 **Tests**: unit
 **Gate**: quick
 **Commit**: `feat(common): add two-tone section title component`
+**Status**: ✅ Complete
 
 ---
 
@@ -560,6 +577,7 @@ existente (`variant="default"`) com o token `--shadow-cta-glow`, estático via C
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(common): add glow button wrapper`
+**Status**: ✅ Complete
 
 ---
 
@@ -584,6 +602,7 @@ do breakpoint `md` (SHEET-03).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(common): add light sheet wrapper`
+**Status**: ✅ Complete
 
 ---
 
@@ -611,6 +630,7 @@ menu mobile com `useState` + gestão de foco (mover ao abrir, devolver ao fechar
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(header): add sticky header with mobile menu`
+**Status**: ✅ Complete
 
 ---
 
@@ -633,6 +653,7 @@ parágrafo, `GlowButton` único, sem CTA secundário nem prova social.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(hero): add hero section`
+**Status**: ✅ Complete
 
 ---
 
@@ -657,6 +678,7 @@ tratado só em CSS (`hover:`/`focus-visible:` do Tailwind).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(personas): add persona cards section`
+**Status**: ✅ Complete
 
 ---
 
@@ -683,6 +705,7 @@ scroll (0..1), com clamp nos extremos.
 **Tests**: unit
 **Gate**: quick
 **Commit**: `feat(narrative): add active step derivation utility`
+**Status**: ✅ Complete
 
 ---
 
@@ -709,6 +732,7 @@ ativo), fade na troca de mídia, empilhamento em coluna única <768px, e leitura
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(narrative): add sticky scrollytelling section`
+**Status**: ✅ Complete
 
 ---
 
@@ -736,6 +760,7 @@ seta em estado final (sem `stroke-dashoffset` animado).
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(delegate): add handwritten annotation with animated arrow`
+**Status**: ✅ Complete
 
 ---
 
@@ -759,6 +784,7 @@ seta em estado final (sem `stroke-dashoffset` animado).
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(delegate): add delegation section`
+**Status**: ✅ Complete
 
 ---
 
@@ -781,6 +807,7 @@ fictícios + depoimentos, com o disclaimer de conteúdo ilustrativo visível.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(social-proof): add social proof section`
+**Status**: ✅ Complete
 
 ---
 
@@ -806,6 +833,7 @@ distinto ("Fale com vendas").
 **Tests**: unit
 **Gate**: quick
 **Commit**: `feat(pricing): add pricing plans section`
+**Status**: ✅ Complete
 
 ---
 
@@ -830,6 +858,7 @@ distinto ("Fale com vendas").
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(faq): add accessible faq accordion`
+**Status**: ✅ Complete
 
 ---
 
@@ -854,6 +883,7 @@ distinto ("Fale com vendas").
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(final-cta): add closing cta section`
+**Status**: ✅ Complete
 
 ---
 
@@ -879,6 +909,7 @@ confirmação (sem chamada de rede).
 **Tests**: component
 **Gate**: quick
 **Commit**: `feat(footer): add decorative newsletter form`
+**Status**: ✅ Complete
 
 ---
 
@@ -903,6 +934,7 @@ colunas de link, `NewsletterForm` (T31), redes sociais, linha legal com
 **Tests**: unit
 **Gate**: quick
 **Commit**: `feat(footer): add site footer`
+**Status**: ✅ Complete
 
 ---
 
@@ -928,6 +960,7 @@ da composição.
 **Tests**: none
 **Gate**: build
 **Commit**: `feat(page): compose evolution landing page`
+**Status**: ✅ Complete
 
 ---
 

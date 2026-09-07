@@ -5,9 +5,16 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  /* --color-background/--color-foreground apontam direto para --tone-surface
+     /--tone-strong (não para --background/--foreground) — ver AD-003 em
+     .specs/STATE.md. --background/--foreground continuam declaradas em
+     :root/.surface-light/.surface-dark só por compatibilidade com o restante
+     do scaffold shadcn; apontar @theme para elas quebra a recomputação por
+     superfície, porque uma var() só resolve usando o valor visível onde ELA
+     é declarada, e --background nunca é redeclarada dentro de .surface-*. */
+  --color-background: var(--tone-surface);
+  --color-foreground: var(--tone-strong);
+  --font-sans: var(--font-outfit);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -24,8 +31,8 @@
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
+  --color-input: var(--tone-border);
+  --color-border: var(--tone-border);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -39,40 +46,120 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
+  /* Raios — remapeados do preset radix-nova para a escala do Evolution
+     (Risco 1 do design.md: nenhum sistema de radius duplicado) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-sheet: 48px;
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Evolution — Base (DESIGN-REFERENCE.md §9) */
+  --color-bg-page: #000000;
+  --color-surface-sheet: #ffffff;
+  --color-surface: #161616;
+  --color-surface-raised: #1f1f1f;
+  --color-surface-sunken: #0a0a0a;
+
+  /* Evolution — Texto (relativo à superfície — ver bloco --tone-* abaixo e
+     --color-foreground logo no topo deste bloco. Corrige o bug em que
+     --foreground/--background herdavam o tema claro do scaffold shadcn em
+     vez da paleta do Evolution: ver .specs/STATE.md AD-002/AD-003) */
+  --color-text-muted: var(--tone-muted);
+  --color-text-subtle: var(--tone-subtle);
+  --color-text-dimmed: var(--tone-dimmed);
+  --color-text-on-light: #0a0a0a;
+  --color-text-on-light-muted: #5a5a5a;
+
+  /* Evolution — Accent */
+  --color-accent-50: #b2ffda;
+  --color-accent-200: #00fdb3;
+  --color-accent-500: #00e19f;
+  --color-accent-700: #00c288;
+  --color-accent-900: #00a976;
+  --color-accent-on-light: #00875d;
+  --color-accent-cta: #00e1ac;
+
+  /* Evolution — Sombras (DESIGN-REFERENCE.md §6 — omitidas do bloco @theme
+     pronto de §9; antes redefinidas localmente em glow-button/personas/delegate) */
+  --shadow-card: 0 8px 24px -8px rgb(0 0 0 / 0.4);
+  --shadow-card-overlap: 0 16px 40px -12px rgb(0 0 0 / 0.5);
+  --shadow-cta-glow:
+    0 0 24px 4px color-mix(in oklch, var(--color-accent-cta) 45%, transparent),
+    0 0 64px 16px color-mix(in oklch, var(--color-accent-cta) 25%, transparent);
+  --shadow-cta-glow-hover:
+    0 0 28px 6px color-mix(in oklch, var(--color-accent-cta) 60%, transparent),
+    0 0 80px 22px color-mix(in oklch, var(--color-accent-cta) 35%, transparent);
+
+  /* Evolution — Motion */
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-hover: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-entrance: 500ms;
+  --duration-hover: 180ms;
+
+  /* Evolution — Tipografia */
+  --text-display: clamp(2.75rem, 2rem + 3.5vw, 7.5rem);
+  --text-h1: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  --text-h2: clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
+  --text-body-lg: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-body: 1rem;
+  --text-caption: 0.875rem;
+
+  /* Evolution — Espaçamento */
+  --spacing-header-x-left: 1.9375rem;
+  --spacing-header-x-right: 1.75rem;
+  --spacing-section: clamp(4rem, 3rem + 5vw, 8rem);
+
+  /* Evolution — Containers */
+  --container-max: 1280px;
+  --container-sheet-gutter: clamp(1rem, 2vw, 2rem);
+
+  /* Evolution — Layout (offset do header sticky para navegação por âncora) */
+  --header-height: 5.5rem;
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Evolution — tons por superfície (AD-002, .specs/STATE.md). Escuro é o
+     padrão da página (bg-page); .surface-light inverte dentro da "folha"
+     branca; .surface-dark restaura o conjunto escuro para cards que ficam
+     escuros mesmo dentro da folha (ex.: Personas). Contraste calculado
+     OKLCH/WCAG — ver plano de correção pós-QA. */
+  --tone-strong: #ffffff;
+  --tone-muted: #afafaf;
+  --tone-subtle: #757575;
+  --tone-dimmed: #5a5a5a;
+  --tone-surface: #000000;
+  --tone-border: oklch(1 0 0 / 12%);
+
+  --background: var(--tone-surface);
+  --foreground: var(--tone-strong);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  /* --primary/--accent remapeados para os tokens do Evolution (Risco 1 do
+     design.md) em vez de manter a paleta neutra do preset radix-nova coexistindo */
+  --primary: #00e1ac;
+  --primary-foreground: #0a0a0a;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: #00e19f;
+  --accent-foreground: #0a0a0a;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: var(--tone-border);
+  --input: var(--tone-border);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -83,6 +170,27 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/* A "folha" branca (LightSheet) — inverte os tons de texto/fundo. */
+.surface-light {
+  --tone-strong: #0a0a0a;
+  --tone-muted: #5a5a5a;
+  --tone-subtle: #5a5a5a;
+  --tone-dimmed: #949494;
+  --tone-surface: #ffffff;
+  --tone-border: oklch(0 0 0 / 12%);
+}
+
+/* Cards escuros dentro da folha branca (ex.: Personas) — restaura o
+   conjunto escuro mesmo aninhado dentro de .surface-light. */
+.surface-dark {
+  --tone-strong: #ffffff;
+  --tone-muted: #afafaf;
+  --tone-subtle: #757575;
+  --tone-dimmed: #5a5a5a;
+  --tone-surface: #161616;
+  --tone-border: oklch(1 0 0 / 12%);
+}
+
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -90,14 +198,14 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --primary: #00e1ac;
+  --primary-foreground: #0a0a0a;
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent: #00e19f;
+  --accent-foreground: #0a0a0a;
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
@@ -126,5 +234,38 @@
   }
   html {
     @apply font-sans;
+    /* Navegação por âncora (Header/Footer → seções). A guarda de
+       prefers-reduced-motion abaixo já força scroll-behavior: auto, então o
+       fallback sem transição é automático. */
+    scroll-behavior: smooth;
+  }
+}
+
+/* Guarda global de prefers-reduced-motion (PRD: fallback é o estado final
+   direto, sem transição, para todo componente — inclusive os que não
+   implementam a própria leitura via useSyncExternalStore). */
+/* Entrada do parágrafo de apoio ativo no Narrative (NARRATIVE-0x): roda
+   automaticamente na montagem, sem precisar de troca de classe um frame
+   depois — o jeito de conseguir uma transição em algo que só existe no DOM
+   quando fica ativo (ver plano de correção pós-QA, Bloco 4). */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

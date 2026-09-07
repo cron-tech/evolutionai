@@ -37,7 +37,7 @@ HackerRank); a referência governa FORMA, o Evolution governa CONTEÚDO.
 | CMS / edição de conteúdo em runtime | Conteúdo é estático, tipado em arquivos `.ts`, editado via código |
 | Internacionalização (i18n) / múltiplos idiomas | Página é 100% em português, decisão confirmada; sem toggle de idioma |
 | Analytics / tracking de eventos | Fora do escopo desta spec; pode ser adicionado depois sem afetar a UI |
-| Blog, documentação, área de recursos completa | O header referencia "Recursos" como item de navegação, mas a página em si não inclui essas rotas |
+| Blog, documentação, área de recursos completa | Resolvido na QA rodada 2 (`AD-004`): o item "Recursos" foi removido do header/footer em vez de mantido como referência sem rota |
 | Testemunhos de empresas reais | Evolution é produto fictício; qualquer testemunho/logo de cliente é fictício — ver Assumptions |
 
 ---
@@ -80,14 +80,18 @@ navegar até ela e observar seu comportamento.
 
 **Acceptance Criteria**:
 
-1. WHEN a página carrega THEN o sistema SHALL exibir wordmark à esquerda, 4 links de
-   navegação (Produto, Soluções, Recursos, Preços) ao centro/esquerda, e um botão
-   secundário ("Fale com vendas") + um botão primário ("Começar agora") à direita.
+1. WHEN a página carrega THEN o sistema SHALL exibir wordmark à esquerda, 3 links de
+   navegação (Produto, Soluções, Preços), cada um apontando para uma âncora de uma
+   seção real da página, ao centro/esquerda, e um botão secundário ("Fale com
+   vendas") + um botão primário ("Começar agora") à direita.
+   (Nota — QA rodada 2: "Recursos" foi removido; era um item sem seção
+   correspondente na página, mantido como suposição consciente na fase Specify
+   e substituído por decisão do usuário durante QA. Ver `AD-004` em `STATE.md`.)
 2. WHEN o usuário rola a página além de 8px do topo THEN o sistema SHALL aplicar
    fundo com opacidade e blur ao header (de transparente para `bg-page` com
    `backdrop-filter: blur`).
 3. WHILE a largura da viewport é menor que o breakpoint `md` (768px) o sistema SHALL
-   substituir os 4 links por um botão de menu que abre um painel de navegação
+   substituir os 3 links por um botão de menu que abre um painel de navegação
    full-screen ou drawer.
 4. WHEN o usuário abre o menu mobile THEN o sistema SHALL mover o foco de teclado
    para o primeiro item do menu e SHALL devolver o foco ao botão de menu ao fechar.
