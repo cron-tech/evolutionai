@@ -5,8 +5,15 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* --color-background/--color-foreground apontam direto para --tone-surface
+     /--tone-strong (não para --background/--foreground) — ver AD-003 em
+     .specs/STATE.md. --background/--foreground continuam declaradas em
+     :root/.surface-light/.surface-dark só por compatibilidade com o restante
+     do scaffold shadcn; apontar @theme para elas quebra a recomputação por
+     superfície, porque uma var() só resolve usando o valor visível onde ELA
+     é declarada, e --background nunca é redeclarada dentro de .surface-*. */
+  --color-background: var(--tone-surface);
+  --color-foreground: var(--tone-strong);
   --font-sans: var(--font-outfit);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
@@ -24,8 +31,8 @@
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
+  --color-input: var(--tone-border);
+  --color-border: var(--tone-border);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -57,10 +64,10 @@
   --color-surface-raised: #1f1f1f;
   --color-surface-sunken: #0a0a0a;
 
-  /* Evolution — Texto (relativo à superfície — ver bloco --tone-* abaixo.
-     Corrige o bug em que --foreground/--background herdavam o tema claro do
-     scaffold shadcn em vez da paleta do Evolution: ver .specs/STATE.md AD-002) */
-  --color-foreground: var(--tone-strong);
+  /* Evolution — Texto (relativo à superfície — ver bloco --tone-* abaixo e
+     --color-foreground logo no topo deste bloco. Corrige o bug em que
+     --foreground/--background herdavam o tema claro do scaffold shadcn em
+     vez da paleta do Evolution: ver .specs/STATE.md AD-002/AD-003) */
   --color-text-muted: var(--tone-muted);
   --color-text-subtle: var(--tone-subtle);
   --color-text-dimmed: var(--tone-dimmed);
