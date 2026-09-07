@@ -39,7 +39,11 @@ export const footerContent: FooterContent = {
       title: "Empresa",
       links: [
         { label: "Sobre o Evolution", href: "#sobre" },
-        { label: "Cron.Tech", href: "#cron-tech" },
+        {
+          label: "Cron.Tech",
+          href: "https://www.instagram.com/cron_tech",
+          external: true,
+        },
         { label: "Fale com vendas", href: "#fale-com-vendas" },
       ],
     },

@@ -25,4 +25,21 @@ describe("Footer", () => {
 
     expect(screen.getByText(/2045/)).toBeInTheDocument()
   })
+
+  it("opens the Empresa column's Cron.Tech link in a new tab with rel=noopener noreferrer", () => {
+    render(<Footer content={footerContent} />)
+
+    const [cronTechLink] = screen.getAllByRole("link", { name: "Cron.Tech" })
+    expect(cronTechLink).toHaveAttribute("href", "https://www.instagram.com/cron_tech")
+    expect(cronTechLink).toHaveAttribute("target", "_blank")
+    expect(cronTechLink).toHaveAttribute("rel", "noopener noreferrer")
+  })
+
+  it("does not add target/rel to an internal (non-external) footer link", () => {
+    render(<Footer content={footerContent} />)
+
+    const internalLink = screen.getByRole("link", { name: "Preços" })
+    expect(internalLink).not.toHaveAttribute("target")
+    expect(internalLink).not.toHaveAttribute("rel")
+  })
 })

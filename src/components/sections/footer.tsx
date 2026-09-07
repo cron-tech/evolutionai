@@ -30,6 +30,7 @@ export function Footer({ content }: FooterProps) {
                     <a
                       href={link.href}
                       className="text-body text-text-muted hover:text-foreground"
+                      {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     >
                       {link.label}
                     </a>

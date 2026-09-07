@@ -7,6 +7,8 @@ export interface CtaContent {
 export interface NavLink {
   label: string
   href: string
+  /** True for a link that leaves the page (e.g. an external social profile). */
+  external?: boolean
 }
 
 export type TextTone = "dimmed" | "accent" | "foreground"
