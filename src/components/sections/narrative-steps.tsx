@@ -73,7 +73,9 @@ export function NarrativeSteps({ steps }: NarrativeStepsProps) {
               >
                 <SectionTitle as="h2" parts={step.titleParts} />
                 {isActive ? (
-                  <p className="mt-4 text-body text-text-muted">{step.supportingText}</p>
+                  <p className="mt-4 animate-[fade-in-up_var(--duration-entrance)_var(--ease-entrance)_both] text-body text-text-muted">
+                    {step.supportingText}
+                  </p>
                 ) : null}
               </div>
             )

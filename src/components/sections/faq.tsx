@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { SectionTitle } from "@/components/common/section-title"
+import { Reveal } from "@/components/common/reveal"
 import type { FaqItem } from "@/lib/content/faq"
 
 interface FaqProps {
@@ -16,7 +17,7 @@ interface FaqProps {
 export function Faq({ items }: FaqProps) {
   return (
     <section className="px-6 py-[var(--spacing-section)]">
-      <div className="mx-auto max-w-3xl">
+      <Reveal className="mx-auto max-w-3xl">
         <SectionTitle
           as="h2"
           parts={[
@@ -37,7 +38,7 @@ export function Faq({ items }: FaqProps) {
             </AccordionItem>
           ))}
         </Accordion>
-      </div>
+      </Reveal>
     </section>
   )
 }

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { Reveal } from "@/components/common/reveal"
 import type { SocialProofContent } from "@/lib/content/social-proof"
 
 interface SocialProofProps {
@@ -25,19 +26,18 @@ export function SocialProof({ content }: SocialProofProps) {
       </div>
 
       <div className="mx-auto mt-16 grid max-w-[var(--container-max)] gap-6 md:grid-cols-3">
-        {content.testimonials.map((testimonial) => (
-          <figure
-            key={testimonial.name}
-            className="flex flex-col gap-4 rounded-2xl bg-background p-6 text-left shadow-[0_8px_24px_-8px_rgb(0_0_0_/_0.15)]"
-          >
-            <blockquote className="text-body text-text-on-light">
-              &ldquo;{testimonial.quote}&rdquo;
-            </blockquote>
-            <figcaption className="text-caption text-text-on-light-muted">
-              <span className="font-medium text-text-on-light">{testimonial.name}</span> —{" "}
-              {testimonial.role}, {testimonial.company}
-            </figcaption>
-          </figure>
+        {content.testimonials.map((testimonial, index) => (
+          <Reveal key={testimonial.name} index={index}>
+            <figure className="flex h-full flex-col gap-4 rounded-2xl bg-background p-6 text-left shadow-[0_8px_24px_-8px_rgb(0_0_0_/_0.15)]">
+              <blockquote className="text-body text-text-on-light">
+                &ldquo;{testimonial.quote}&rdquo;
+              </blockquote>
+              <figcaption className="text-caption text-text-on-light-muted">
+                <span className="font-medium text-text-on-light">{testimonial.name}</span> —{" "}
+                {testimonial.role}, {testimonial.company}
+              </figcaption>
+            </figure>
+          </Reveal>
         ))}
       </div>
     </section>

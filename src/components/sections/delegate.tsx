@@ -1,5 +1,6 @@
 import { SectionTitle } from "@/components/common/section-title"
 import { UiMock } from "@/components/common/ui-mock"
+import { Reveal } from "@/components/common/reveal"
 import { cn } from "@/lib/utils"
 import type { DelegateContent, KanbanCardContent } from "@/lib/content/delegate"
 import { DelegateAnnotation } from "./delegate-annotation"
@@ -30,12 +31,12 @@ export function Delegate({ content }: DelegateProps) {
   return (
     <section className="bg-bg-page px-6 py-[var(--spacing-section)]">
       <div className="mx-auto grid max-w-[var(--container-max)] gap-16 md:grid-cols-2 md:items-center">
-        <div className="flex flex-col gap-6 text-left">
+        <Reveal className="flex flex-col gap-6 text-left">
           <SectionTitle as="h2" parts={content.titleParts} />
           <p className="max-w-md text-body-lg text-text-muted">{content.paragraph}</p>
-        </div>
+        </Reveal>
 
-        <div className="relative pb-24">
+        <Reveal index={1} className="relative pb-24">
           <UiMock
             content={content.mock}
             className="mx-auto aspect-3/4 w-full max-w-sm"
@@ -47,7 +48,7 @@ export function Delegate({ content }: DelegateProps) {
           </div>
 
           <DelegateAnnotation text={content.annotation} />
-        </div>
+        </Reveal>
       </div>
     </section>
   )
