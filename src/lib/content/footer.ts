@@ -14,12 +14,19 @@ export interface NewsletterContent {
   confirmation: string
 }
 
+export interface DevelopmentCreditContent {
+  prefix: string
+  label: string
+  href: string
+}
+
 export interface FooterContent {
   description: string
   columns: { title: string; links: NavLink[] }[]
   newsletter: NewsletterContent
   socials: { label: string; href: string; icon: SocialIconName }[]
   legalLinks: NavLink[]
+  credit: DevelopmentCreditContent
 }
 
 export const footerContent: FooterContent = {
@@ -68,4 +75,9 @@ export const footerContent: FooterContent = {
     { label: "Privacidade", href: "#privacidade" },
     { label: "Termos", href: "#termos" },
   ],
+  credit: {
+    prefix: "Desenvolvido pela ",
+    label: "Cron.Tech",
+    href: "https://www.instagram.com/cron_tech",
+  },
 }

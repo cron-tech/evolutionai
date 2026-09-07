@@ -64,6 +64,17 @@ export function Footer({ content }: FooterProps) {
         <div className="flex flex-col gap-3 border-t border-white/10 pt-6 text-caption text-text-subtle sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} Evolution. Todos os direitos reservados.</p>
           <div className="flex gap-4">
+            <p>
+              {content.credit.prefix}
+              <a
+                href={content.credit.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-text-muted"
+              >
+                {content.credit.label}
+              </a>
+            </p>
             {content.legalLinks.map((link) => (
               <a key={link.href} href={link.href} className="hover:text-text-muted">
                 {link.label}

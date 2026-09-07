@@ -35,6 +35,20 @@ describe("Footer", () => {
     expect(cronTechLink).toHaveAttribute("rel", "noopener noreferrer")
   })
 
+  it("renders a development credit linking to Cron.Tech, also opening in a new tab", () => {
+    const { container } = render(<Footer content={footerContent} />)
+
+    expect(container.textContent).toContain(
+      `${footerContent.credit.prefix}${footerContent.credit.label}`
+    )
+
+    const creditLinks = screen.getAllByRole("link", { name: "Cron.Tech" })
+    const creditLink = creditLinks[creditLinks.length - 1]
+    expect(creditLink).toHaveAttribute("href", footerContent.credit.href)
+    expect(creditLink).toHaveAttribute("target", "_blank")
+    expect(creditLink).toHaveAttribute("rel", "noopener noreferrer")
+  })
+
   it("does not add target/rel to an internal (non-external) footer link", () => {
     render(<Footer content={footerContent} />)
 
